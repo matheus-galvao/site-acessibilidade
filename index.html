@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio Científico | Propriedades da Luz</title>
+    <style>
+        /* Variáveis de Cores e Estilo */
+        :root {
+            --primary: #38bdf8;
+            --primary-hover: #0284c7;
+            --bg-color: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+            --dark-blue: #0f172a;
+            --accent: #e0f2fe;
+        }
+
+        /* Reset e Fontes */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+        /* Cabeçalho Premium */
+        header {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #1e293b 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.05) 10%, transparent 60%); z-index: 1;
+        }
+
+        .header-content { position: relative; z-index: 2; }
+        header h1 { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--primary); margin-bottom: 0.5rem; letter-spacing: -1px; }
+        header h2 { font-size: clamp(1rem, 3vw, 1.2rem); font-weight: 400; color: #cbd5e1; margin-bottom: 2rem; }
+
+        .team-badge {
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1); padding: 1rem 2rem;
+            border-radius: 50px; display: inline-block; font-size: 0.95rem;
+        }
+        .team-badge strong { color: var(--primary); }
+
+        /* Container e Layout Principal */
+        main { max-width: 1200px; margin: -3rem auto 4rem; padding: 0 1.5rem; position: relative; z-index: 10; }
+        .section-header { text-align: center; margin: 4rem 0 2rem; }
+        .section-header h2 { font-size: 2rem; color: var(--dark-blue); margin-bottom: 0.5rem; }
+        .section-header p { color: var(--text-muted); font-size: 1.1rem; }
+
+        /* Grid de Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+
+        /* Cards Interativos */
+        .card {
+            background: var(--card-bg); border-radius: 1rem; overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; border: 1px solid #f1f5f9;
+        }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); border-color: var(--accent); }
+        .card-icon { height: 140px; background: linear-gradient(135deg, var(--accent) 0%, #bae6fd 100%); display: flex; align-items: center; justify-content: center; font-size: 4.5rem; }
+        .card-body { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-title { font-size: 1.25rem; color: var(--dark-blue); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .card-text { color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
+        .card-text strong { color: var(--text-main); }
+
+        /* Botões */
+        .btn-container { display: flex; gap: 0.5rem; flex-direction: column; }
+        .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+        .btn {
+            background-color: var(--primary); color: var(--dark-blue); text-decoration: none;
+            padding: 0.875rem 1.5rem; border-radius: 0.5rem; font-weight: 600; text-align: center;
+            transition: all 0.2s ease; display: inline-flex; align-items: center; justify-content: center;
+            gap: 0.5rem; border: none; cursor: pointer; width: 100%;
+        }
+        .btn:hover { background-color: var(--primary-hover); color: white; }
+        .btn-audio { background-color: var(--dark-blue); color: white; }
+        .btn-audio:hover { background-color: #1e293b; color: var(--primary); }
+        .btn-special { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: white; box-shadow: 0 4px 14px 0 rgba(2, 132, 199, 0.39); }
+        .btn-special:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(2, 132, 199, 0.23); }
+
+        /* Rodapé */
+        footer { background-color: var(--dark-blue); color: #94a3b8; text-align: center; padding: 3rem 1rem; margin-top: 4rem; }
+        footer p { margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <h1>🚀 Desafio Científico</h1>
+            <h2>As Propriedades da Luz e a Visão do Mundo<br>Profa. Andressa Navarro Ramalho Pimpão</h2>
+            <div class="team-badge">
+                <strong>Turma 2ªC</strong> | Arthur, Matheus, Miguel, Rafael, Vinicius, Yan
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="section-header">
+            <h2>🔬 Mão na Massa: Desafios da Física</h2>
+            <p>A óptica física explicada através de experimentos reais desenvolvidos pela equipe.</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">🔦</div>
+                <div class="card-body">
+                    <h3 class="card-title">O "Bate e Volta"</h3>
+                    <p class="card-text"><strong>Lei da Reflexão Regular:</strong> Demonstração em vídeo comprovando que o ângulo de incidência do laser é exatamente igual ao ângulo de reflexão no espelho plano.</p>
+                    <div class="btn-container">
+                        <a href="https://qrfacil.me/QWT5YSQV" target="_blank" class="btn">▶️ Assistir Vídeo (12s)</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">💧</div>
+                <div class="card-body">
+                    <h3 class="card-title">Lápis que Entorta</h3>
+                    <p class="card-text"><strong>Refração da Luz:</strong> Análise visual da luz "freiando" e mudando de direção ao transitar do ar para a água, gerando a ilusão de quebra do objeto.</p>
+                    <div class="btn-container">
+                        <a href="https://qrfacil.me/Qez5NWub" target="_blank" class="btn">▶️ Assistir Vídeo (20s)</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🥄</div>
+                <div class="card-body">
+                    <h3 class="card-title">Curvar a Realidade</h3>
+                    <p class="card-text"><strong>Espelhos Esféricos:</strong> A manipulação da luz utilizando superfícies curvas para inverter a imagem e para ampliar radicalmente o campo de visão.</p>
+                    <div class="btn-row">
+                        <a href="https://qrfacil.me/QczcYpZb" target="_blank" class="btn">▶️ Côncavo</a>
+                        <a href="https://qrfacil.me/QNHNawMu" target="_blank" class="btn">▶️ Convexo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>🤝 Conexão com a Acessibilidade</h2>
+            <p>Transformando o conhecimento físico em ferramentas de autonomia e inclusão.</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon" style="background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);">👆</div>
+                <div class="card-body">
+                    <h3 class="card-title">A Percepção Tátil</h3>
+                    <p class="card-text">Como o nosso cérebro recruta outras áreas sensoriais, utilizando a energia mecânica (tato) para processar texturas e formatos na ausência de estímulos luminosos.</p>
+                    <div class="btn-container">
+                        <a href="https://qrfacil.me/QjiekV9s" target="_blank" class="btn btn-audio">🔊 Ouvir Áudio-Descrição</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon" style="background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);">🧠</div>
+                <div class="card-body">
+                    <h3 class="card-title">Engenharia Inclusiva</h3>
+                    <p class="card-text">A conclusão do nosso projeto: como bengalas inteligentes, carros autônomos e espelhos de segurança aplicam a óptica para garantir independência e mobilidade a todos.</p>
+                    <div class="btn-container">
+                        <a href="https://qrco.de/bgt4Sk" target="_blank" class="btn btn-special">🤖 Ouvir IA Assistente</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p><strong>A ciência a favor da autonomia.</strong></p>
+        <p>Física e Tecnociência - 2026</p>
+    </footer>
+
+</body>
+</html>
